@@ -7,8 +7,18 @@ from dotenv import dotenv_values
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+import jwt
 
 app = FastAPI()
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok", "redis": "up"}
+
+# Keep your existing OAuth settings and /verify endpoint below.
+
 
 @app.get("/healthz")
 def healthz():
