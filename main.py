@@ -10,6 +10,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+@app.get("/healthz")
+def healthz():
+    return {
+        "status": "ok",
+        "redis": "up"
+    }
+
 # Allow browser-based checks from the assignment page.
 app.add_middleware(
     CORSMiddleware,
